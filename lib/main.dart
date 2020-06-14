@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutterdemo/webview/browser.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
+import 'package:flutterdemo/mine/row.dart';
+import 'package:flutterdemo/mine/header.dart';
 
 void main() => runApp(new MyApp());
 
@@ -38,91 +40,76 @@ class UserInfo extends StatelessWidget {
       boxShadow: [
         BoxShadow(
             color: Colors.black12,
-            offset: Offset(15.0, 15.0), //阴影xy轴偏移量
+            // offset: Offset(15.0, 15.0), //阴影xy轴偏移量
             blurRadius: 15.0, //阴影模糊程度
             spreadRadius: 1.0 //阴影扩散程度
             )
       ]);
   @override
   Widget build(BuildContext context) {
-    // header
-    Widget header = new Container(
-      margin: EdgeInsets.all(10),
-      padding: const EdgeInsets.all(20.0),
-      decoration: decoration,
-      child: new Row(
-        children: <Widget>[
-          new Container(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: new Icon(
-              Icons.person,
-              size: 40,
-              color: Colors.green,
-            ),
-          ),
-          new Expanded(
-              child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                new Text(
-                  '库管小灵通0636966',
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                new Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    new Text('用户名：wms123456',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    new Text('手机：1382123456',
-                        style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.bold))
-                  ],
-                )
-              ])),
-        ],
-      ),
-    );
-
     // card
-    Widget CardF = new Container(
-      margin: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
+    Widget cardF = new Container(
+      margin: EdgeInsets.only(top: 2, left: 10, right: 10, bottom: 10),
+      // padding: EdgeInsets.all(5),
       decoration: decoration,
       child: new Column(
         children: <Widget>[
-          new RowType(icon: Icons.star, title: '昵称', subtitle: '库管小灵通0636966'),
-          new Divider(),
-          new RowType(icon: Icons.star, title: '修改密码', subtitle: ''),
-          new Divider()
+          new RowType(
+            icon: Icons.star,
+            title: '昵称',
+            subtitle: '库管小灵通0636966',
+            nextIcon: Icon(Icons.keyboard_arrow_right),
+            onPress: () {
+              Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+                return new Browser(
+                  url: "https://flutter-io.cn/",
+                  title: "Flutter 中文社区",
+                );
+              }));
+            },
+          ),
+          new RowType(
+              icon: Icons.star,
+              title: '修改密码',
+              subtitle: '',
+              nextIcon: Icon(Icons.keyboard_arrow_right)),
+          // new Divider()
         ],
       ),
     );
-    Widget CardS = new Container(
-      margin: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
+    Widget cardS = new Container(
+      margin: EdgeInsets.only(top: 2, left: 10, right: 10, bottom: 10),
       decoration: decoration,
       child: new Column(
         children: <Widget>[
-          new RowType(icon: Icons.star, title: '版本号', subtitle: 'V1.0.23'),
-          new Divider(),
-          new RowType(icon: Icons.star, title: '清空缓存', subtitle: ''),
-          new Divider()
+          new RowType(
+              icon: Icons.star,
+              title: '版本号',
+              subtitle: 'V1.0.23',
+              nextIcon: Icon(null)),
+          new RowType(
+              icon: Icons.star,
+              title: '清空缓存',
+              subtitle: '',
+              nextIcon: Icon(Icons.keyboard_arrow_right)),
         ],
       ),
     );
-    Widget CardT = new Container(
-      margin: EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
+    Widget cardT = new Container(
+      margin: EdgeInsets.only(top: 2, left: 10, right: 10, bottom: 10),
       decoration: decoration,
       child: new Column(
         children: <Widget>[
-          new RowType(icon: Icons.star, title: '关于APP', subtitle: ''),
-          new Divider(),
-          new RowType(icon: Icons.star, title: '推荐给好友', subtitle: ''),
-          new Divider()
+          new RowType(
+              icon: Icons.star,
+              title: '关于APP',
+              subtitle: '',
+              nextIcon: Icon(Icons.keyboard_arrow_right)),
+          new RowType(
+              icon: Icons.star,
+              title: '推荐给好友',
+              subtitle: '',
+              nextIcon: Icon(Icons.keyboard_arrow_right)),
         ],
       ),
     );
@@ -133,62 +120,7 @@ class UserInfo extends StatelessWidget {
         centerTitle: true,
       ),
       body: new ListView(
-        children: <Widget>[header, CardF, CardS, CardT],
-      ),
-    );
-  }
-
-  // page
-  Widget Content = new Container(
-    padding: const EdgeInsets.all(20.0),
-    child: new Card(),
-  );
-}
-
-class RowType extends StatelessWidget {
-  const RowType({Key key, this.title, this.subtitle, this.icon})
-      : super(key: key);
-  final title;
-  final subtitle;
-  final icon;
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      padding: const EdgeInsets.all(20.0),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          new Row(children: [
-            new Container(
-              padding: const EdgeInsets.only(right: 10),
-              child: new Icon(
-                icon,
-                size: 20,
-                color: Colors.green,
-              ),
-            ),
-            new Container(
-              padding: const EdgeInsets.only(right: 60),
-              child: new Text(
-                title,
-                style: new TextStyle(fontSize: 16),
-              ),
-            ),
-          ]),
-          new Container(
-            padding: const EdgeInsets.only(right: 10),
-            child: new Text(
-              subtitle,
-              style: new TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-          new Icon(
-            Icons.keyboard_arrow_right,
-            color: Colors.grey,
-          ),
-        ],
+        children: <Widget>[new Header(), cardF, cardS, cardT],
       ),
     );
   }
