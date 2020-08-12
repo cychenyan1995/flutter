@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatelessWidget{
+class Header extends StatelessWidget {
   final decoration = new BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(8.0),
-    boxShadow: [
-      BoxShadow(
-          color: Colors.black12,
-          // offset: Offset(15.0, 15.0), //阴影xy轴偏移量
-          blurRadius: 15.0, //阴影模糊程度
-          spreadRadius: 1.0 //阴影扩散程度
-          )
-    ]);
-  Widget build(BuildContext context){
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(8.0),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black12,
+            // offset: Offset(15.0, 15.0), //阴影xy轴偏移量
+            blurRadius: 15.0, //阴影模糊程度
+            spreadRadius: 1.0 //阴影扩散程度
+            )
+      ]);
+  Widget build(BuildContext context) {
     return new Container(
       margin: EdgeInsets.all(10),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       decoration: decoration,
       child: new Row(
         children: <Widget>[
@@ -23,13 +23,13 @@ class Header extends StatelessWidget{
             padding: const EdgeInsets.all(5),
             margin: const EdgeInsets.only(right: 10),
             decoration: new BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.teal[300],
+              borderRadius: BorderRadius.circular(25),
             ),
             child: new Icon(
               Icons.person,
               size: 40,
-              color: Colors.green,
+              color: Colors.white,
             ),
           ),
           new Expanded(

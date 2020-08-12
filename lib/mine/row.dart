@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/webview/browser.dart';
 
 class RowType extends StatelessWidget {
-  const RowType({Key key, this.title, this.subtitle, this.icon, this.nextIcon,this.onPress})
+  const RowType(
+      {Key key,
+      this.title,
+      this.subtitle,
+      this.icon,
+      this.nextIcon,
+      this.onPress})
       : super(key: key);
   final title;
   final subtitle;
@@ -23,11 +29,16 @@ class RowType extends StatelessWidget {
             children: [
               new Row(children: [
                 new Container(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.only(right: 10),
+                  decoration: new BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   child: new Icon(
                     icon,
-                    size: 20,
-                    color: Colors.green,
+                    size: 23,
+                    color: Colors.tealAccent[700],
                   ),
                 ),
                 new Container(
@@ -49,10 +60,7 @@ class RowType extends StatelessWidget {
                     ),
                   ),
                   new IconButton(
-                    icon: nextIcon,
-                    color: Colors.grey,
-                    onPressed: onPress
-                  )
+                      icon: nextIcon, color: Colors.grey, onPressed: onPress)
                 ],
               )
             ],
